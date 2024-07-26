@@ -6,10 +6,10 @@ import 'package:reddit/Themes/themes.dart';
 
 class SignInButton extends ConsumerWidget {
   final bool isFromLogin;
-  const SignInButton({Key? key, this.isFromLogin = true}) : super(key: key);
+  const SignInButton({super.key, this.isFromLogin = true});
 
-  void signInWithGoogle(WidgetRef ref) {
-    ref.read(authControllerProvider).signInWithGoogle();
+  void signInWithGoogle(BuildContext context, WidgetRef ref) {
+    ref.read(authControllerProvider.notifier).signInWithGoogle(context);
   }
 
   @override
@@ -17,7 +17,7 @@ class SignInButton extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: ElevatedButton.icon(
-        onPressed: () => signInWithGoogle(ref),
+        onPressed: () => signInWithGoogle(context, ref),
         icon: Image.asset(
           Constants.googlePath,
           width: 35,
